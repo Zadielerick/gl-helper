@@ -3,25 +3,18 @@
 
 #include <GLES2/gl2.h>
 
-#ifdef PLATFORM_GLFW
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-#endif
-
 /* Window Class
  * Handles the following tasks for OpenGL:
  * - Creates a window for the GL context
  * - Provides a swap-buffer implementation to call in the rendering loop
  *
  * In order to interface with different frameworks, different implementations
- * will be defined, separated by the PLATFORM_* preprocessor definition.
+ * will be defined. The build infrastructure will take care of including the
+ * correct windowing system
  */
 class Window
 {
 public:
-	Window();
-	~Window();
-
-	void swapBuffers();
+	virtual void swapBuffers() const = 0;
 };
 #endif /* _WINDOW_H_ */
